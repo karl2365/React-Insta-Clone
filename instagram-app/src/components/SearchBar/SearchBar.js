@@ -2,7 +2,7 @@ import React from 'react';
 import "./search.scss";
 
 
-const SearchBar = () => {
+const SearchBar = (props) => {
 
     return (
         <div className="main">
@@ -10,7 +10,9 @@ const SearchBar = () => {
             <i className="fab fa-instagram"></i> | <span className="insta-logo">Instagram</span>
             </div>
             <div className="center">
-                <input type="text" placeholder="Search"></input>
+                <form onSubmit={props.submit}>
+                    <input type="text" placeholder="Search"></input>
+                </form>
             </div>
             
             <div className="right">

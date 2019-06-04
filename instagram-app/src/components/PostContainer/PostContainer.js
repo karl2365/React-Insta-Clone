@@ -3,27 +3,74 @@ import Comment from '../CommentSection/Comment'
 import './post.scss';
 import PropTypes from 'prop-types';
 
-const PostContainer = (props) => {
+class PostContainer extends React.Component {
  
+    constructor(props){
+        super(props);
+        this.state = {
+            comments: props.data.comments,
+            username: 'default',
+            text: '',
+            id: Date.now(),
+            likes: props.data.likes
+        }
+        console.log(props);
+    }
+
+    addComment = e => {
+        e.preventDefault();
+        const newComment = {
+            text: this.state.text,
+            id: Date.now(),
+            username: 'default'
+        }
+        this.setState({
+            comments: [...this.state.comments, newComment],
+            text: '',
+            id: Date.now(),
+            username: 'default'
+        });
+    }
+
+    handleChange = e => {
+        this.setState({
+            [e.target.name]: e.target.value,
+            id: Date.now()
+        });
+    }
+    
+    addLike = e => {
+        console.log(this.state.likes)
+        this.setState({
+            likes: this.state.likes + 1
+        })
+    }
+
+    render() {
+
         return (
             <div className="post-container">
-
+                    
                 <div className="post-header">
-                    <img className="thumb" src={props.data.thumbnailUrl}></img>
-                    <p>{props.data.username}</p>
+                    <img className="thumb" src={this.props.data.thumbnailUrl}></img>
+                    <p>{this.props.data.username}</p>
                 </div>
-                <p><img className="main-image" src={props.data.imageUrl}></img></p>
+                <p><img className="main-image" src={this.props.data.imageUrl}></img></p>
+                
                 <div className="bottom">   
-                    <p ><i className="far fa-heart"></i>&nbsp;&nbsp;&nbsp; <i className="far fa-comment"></i></p>
-                    <span className="likes">{props.data.likes} likes</span>
-                    {props.data.comments.map(comment => (
+                    <p ><i className="far fa-heart" onClick={this.addLike}></i>&nbsp;&nbsp;&nbsp; <i className="far fa-comment"></i></p>
+                    <span className="likes">{this.state.likes} likes</span>
+                    {this.state.comments.map(comment => (
                         <Comment comment={comment} key={comment.id} />
                     ))}
-                    <input className="input" type="text" placeholder="Add a comment..."></input>
+                    <form className="add-comment" onSubmit={this.addComment}>
+                        <input className="input" type="text" onChange={this.handleChange} name="text" value={this.state.text} placeholder="Add a comment..." required></input>
+                        {/* <button type='submit'>submit</button> */}
+                    </form>
                 </div>        
             </div>
-        )
-
+        )                
+    }    
 
 }
 

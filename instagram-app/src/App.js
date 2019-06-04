@@ -21,7 +21,7 @@ class App extends React.Component {
 
       
       <div className="App">
-        <SearchBar />
+        <SearchBar submit={this.searchData} />
         {this.state.data.map(data => (
           <PostContainer data={data} key={data.id} />
         ))}
