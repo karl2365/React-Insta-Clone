@@ -8,15 +8,25 @@ class PostContainer extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            comments: props.data.comments,
-            username: 'default',
+            comments: [],
+            username: '',
             text: '',
             id: Date.now(),
-            likes: props.data.likes
+            likes: 0
         }
         console.log(props);
     }
 
+    componentDidMount() {
+        this.setState({
+            comments: this.props.data.comments,
+            username: 'default',
+            text: '',
+            id: Date.now(),
+            likes: this.props.data.likes
+        })
+    }
+    
     addComment = e => {
         e.preventDefault();
         const newComment = {
