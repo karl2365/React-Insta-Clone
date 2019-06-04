@@ -14,7 +14,6 @@ class PostContainer extends React.Component {
             id: Date.now(),
             likes: 0
         }
-        console.log(props);
     }
 
     componentDidMount() {
@@ -23,7 +22,9 @@ class PostContainer extends React.Component {
             username: 'default',
             text: '',
             id: Date.now(),
-            likes: this.props.data.likes
+            likes: this.props.data.likes,
+            liked: false
+
         })
     }
     
@@ -50,12 +51,18 @@ class PostContainer extends React.Component {
     }
     
     addLike = e => {
-        console.log(this.state.likes)
-        this.setState({
-            likes: this.state.likes + 1
-        })
+        if(this.state.liked){
+            this.setState({
+                likes: this.state.likes - 1,
+                liked: false
+            }) 
+        }else{ this.setState({
+            likes: this.state.likes + 1,
+            liked: true
+            });            
+        }    
     }
-
+    
     render() {
 
         return (

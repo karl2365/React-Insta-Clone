@@ -1,6 +1,6 @@
 import React from 'react';
 import "./search.scss";
-
+import PropTypes from 'prop-types';
 
 const SearchBar = (props) => {
 
@@ -11,7 +11,7 @@ const SearchBar = (props) => {
             </div>
             <div className="center">
                 <form onSubmit={props.submit}>
-                    <input type="text" placeholder="Search"></input>
+                    <input onChange={props.change} value={props.value} placeholder="Search"></input>
                 </form>
             </div>
             
@@ -25,7 +25,12 @@ const SearchBar = (props) => {
 
 }
 
+SearchBar.propTypes = {
+    change: PropTypes.func,
+    value: PropTypes.string,
+    submit: PropTypes.func
 
+}
 
 
 export default SearchBar;
