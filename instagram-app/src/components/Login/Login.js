@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './login.scss';
 
 class Login extends React.Component {
 
@@ -30,10 +30,12 @@ class Login extends React.Component {
     render() {
         return(
             <div>
+                <h1>Welcome to <span className="insta">Instagram</span></h1>
+                <h2>Please Log In to Continue</h2>
                 <form className='loginForm' onSubmit={() =>this.login()}>
-                    <input type="text" name="username" onChange={this.handleChangeForm} value={this.state.username} placeholder="name"></input>
-                    <input type="text" name="password" placeholder="password"></input>
-                    <button type="submit">Login</button>
+                    <input type="text" name="username" onChange={this.handleChangeForm} value={this.state.username} placeholder="username" required></input>
+                    <input type="password" name="password" placeholder="password" required></input>
+                    <button className="loginButton" type="submit">Login</button>
                 </form>
             </div>
         )

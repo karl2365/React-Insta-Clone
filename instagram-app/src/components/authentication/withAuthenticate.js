@@ -1,5 +1,6 @@
 import React from "react";
 import Login from "../Login/Login";
+import './authenticate.scss';
 
 
 const withAuthenticate = PostsPage => LoginPage =>
@@ -23,12 +24,25 @@ const withAuthenticate = PostsPage => LoginPage =>
             }
         }
 
-
+        logout = () => {
+            if(localStorage.getItem('username')) {
+                localStorage.removeItem('username');
+                this.setState({
+                    loggedIn: false
+                })
+            }
+        }
         render(){
             if (this.state.loggedIn){
-                return <PostsPage />
+                return(
+                <>
+                <button onClick={this.logout}>Log Out</button>
+                <PostsPage />
+                </>
+                )
             }else{
                 return <LoginPage />
+             
             }
         }
 };

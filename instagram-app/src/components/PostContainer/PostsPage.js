@@ -18,7 +18,6 @@ class PostsPage extends React.Component {
         }
     }
 
-  
     componentDidMount() {
         this.setState ({
             data: dummyData,
@@ -46,25 +45,15 @@ class PostsPage extends React.Component {
         });
     }
     
-    logout = () => {
-        if(localStorage.getItem('username')) {
-            localStorage.removeItem('username');
-            this.setState({
-                loggedIn: false
-            })
-        }
-    }
+ 
 
     render(){
         return (
             <div>
-                  <SearchBar submit={this.searchData} change={this.handleChange} value={this.state.user} />
+                <SearchBar submit={this.searchData} change={this.handleChange} value={this.state.user} />
                 {this.state.data.map(data => (
                 <PostContainer data={data} key={data.id} />
-        ))}
-
-                <h1>Posts PostsPage</h1>
-                <button onClick={this.logout}>Log Out</button>
+                ))}
             </div>
 
         )

@@ -8,39 +8,12 @@ import withAuthenticate from './components/authentication/withAuthenticate';
 const ComponentFromWithAuthenticate = withAuthenticate(PostsPage)(LoginPage);
 class App extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {
-      data: [],
-      user: ''
-    }
-  }
-
-  
-  
-  componentDidMount() {
-    // this.setState ({
-    //   data: dummyData,
-    //   user: ''
-    // })
-  }
-
-
-
-
-
-
   render () {
     return (
-
-    
       <div className="App">
         <ComponentFromWithAuthenticate />
-
       </div>
     );
-
   }
-  
 }
 export default App;
