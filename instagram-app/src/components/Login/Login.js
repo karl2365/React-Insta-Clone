@@ -14,7 +14,7 @@ class Login extends React.Component {
         if(localStorage.getItem('username')){
             localStorage.removeItem('username');
         }
-        localStorage.setItem('username', name);
+        localStorage.setItem('username', name )
         this.setState({
             loggedIn: true
         })
@@ -23,7 +23,7 @@ class Login extends React.Component {
     render() {
         return(
             <div>
-                <form className='loginForm' onSubmit={this.login()}>
+                <form className='loginForm' onSubmit={() =>this.login('karl', 'password')}>
                     <input type="text" id="name" placeholder="name"></input>
                     <input type="text" id="password" placeholder="password"></input>
                     <button type="submit">Login</button>
