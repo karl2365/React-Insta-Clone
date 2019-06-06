@@ -1,7 +1,59 @@
 import React from 'react';
 import Comment from '../CommentSection/Comment'
-import './post.scss';
+// import './post.scss';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const PostContainerDiv = styled.div`
+    text-align: left;
+    margin-left: 20px;
+    border: 1px solid lightgrey;
+    width: 600px;
+    margin-top: 25px;
+`;
+
+const Thumb = styled.img`
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    margin: 10px;
+`;
+
+
+const MainImage = styled.img`
+    width: 100%;
+
+`;
+
+const PostHeader = styled.div`
+    display: flex;
+    align-items: center;
+    p {
+        font-weight: 700;
+    }
+`;
+
+const Likes = styled.span`
+    font-weight: 700;
+`;
+
+const Bottom = styled.div`
+    margin: 0 0 10px 10px;
+    i {
+        font-size: 1.7rem;
+    }
+    input {
+        margin-top: 15px;
+        margin-right: 15px;
+        border-radius: 5px;
+        font-size: 1.4rem;
+        border-color: #cc6633;
+    
+        &:focus {
+            outline: none;
+        }
+    }
+`;
 
 class PostContainer extends React.Component {
  
@@ -66,17 +118,17 @@ class PostContainer extends React.Component {
     render() {
 
         return (
-            <div className="post-container">
+            <PostContainerDiv>
                     
-                <div className="post-header">
-                    <img className="thumb" src={this.props.data.thumbnailUrl}></img>
+                <PostHeader>
+                    <Thumb src={this.props.data.thumbnailUrl}></Thumb>
                     <p>{this.props.data.username}</p>
-                </div>
-                <p><img className="main-image" src={this.props.data.imageUrl}></img></p>
+                </PostHeader>
+                <p><MainImage src={this.props.data.imageUrl}></MainImage></p>
                 
-                <div className="bottom">   
+                <Bottom>   
                     <p ><i className="far fa-heart" onClick={this.addLike}></i>&nbsp;&nbsp;&nbsp; <i className="far fa-comment"></i></p>
-                    <span className="likes">{this.state.likes} likes</span>
+                    <Likes>{this.state.likes} likes</Likes>
                     {this.state.comments.map(comment => (
                         <Comment comment={comment} key={comment.id} />
                     ))}
@@ -84,8 +136,8 @@ class PostContainer extends React.Component {
                         <input className="input" type="text" onChange={this.handleChange} name="text" value={this.state.text} placeholder="Add a comment..." required></input>
                         {/* <button type='submit'>submit</button> */}
                     </form>
-                </div>        
-            </div>
+                </Bottom>        
+            </PostContainerDiv>
         )                
     }    
 

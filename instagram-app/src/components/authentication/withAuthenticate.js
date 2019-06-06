@@ -1,6 +1,20 @@
 import React from "react";
 import Login from "../Login/Login";
-import './authenticate.scss';
+// import './authenticate.scss';
+import styled from 'styled-components';
+
+const ButtonA = styled.button`
+    position: relative;
+    left: 40%;
+    top: 59px;
+    height: 30px;
+    border-radius: 15px;
+    background: #cc6633;
+    color: white;
+    font-weight: 600;
+    outline: none;
+}
+`;
 
 
 const withAuthenticate = PostsPage => LoginPage =>
@@ -36,7 +50,7 @@ const withAuthenticate = PostsPage => LoginPage =>
             if (this.state.loggedIn){
                 return(
                 <>
-                <button onClick={this.logout}>Log Out</button>
+                <ButtonA onClick={this.logout}>Log Out</ButtonA>
                 <PostsPage />
                 </>
                 )
