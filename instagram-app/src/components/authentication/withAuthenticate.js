@@ -42,7 +42,6 @@ const withAuthenticate = PostsPage => LoginPage =>
                 )
             }else{
                 return <LoginPage />
-             
             }
         }
 };
